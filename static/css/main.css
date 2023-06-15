@@ -36,6 +36,12 @@
     color:var(--active-color);
 }
 
+.clock-letter:not(.active) {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .clock-row {
     display:flex;
     flex-direction:row;

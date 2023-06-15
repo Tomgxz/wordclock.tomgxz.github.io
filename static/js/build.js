@@ -1,16 +1,12 @@
-function get(x) {
-    return document.getElementById("clock-letter-"+x.toString())
-}
+function get(x) { return document.getElementById(`clock-letter-${x}`) }
     
 function getGroup(min,max) {
     var lst=[]
-    for (var i = min; i <= max; i++) { lst.push(get(i)) }
+    for (var i = min; i <= max; i++) lst.push(get(i))
     return lst
 }
 
-function turnGroupOn(min,max) {
-    getGroup(min,max).forEach((e)=>{e.classList.add("active")})
-}
+function turnGroupOn(min,max) { getGroup(min,max).forEach((e)=>{e.classList.add("active")}) }
 
 class Wordclock {
     constructor(activeColor, disabledColor, backgroundColor) {
@@ -24,9 +20,7 @@ class Wordclock {
 
         //update every 10s
         this.update();
-        setInterval(() => {
-            this.update();
-        }, 500);
+        setInterval(() => { this.update() }, 500);
     }
 
     applyUserOptions(activeColor, disabledColor, backgroundColor) {
@@ -38,23 +32,18 @@ class Wordclock {
     }
 
     update() {
-        this.localDate = new Date();
-        if (this.mins == this.localDate.getMinutes() && this.hrs == this.localDate.getHours()) {
-            return
-        }
+        this.localDate = new Date()
+        if (this.mins == this.localDate.getMinutes() && this.hrs == this.localDate.getHours()) return 
         this.mins = this.localDate.getMinutes();
         this.hrs = this.localDate.getHours();
         this.on();
     }
     
-    turnGroupOn(min,max) {
-        this.getGroup(min,max).forEach((e)=>{e.classList.add("active")})
-    }
+    turnGroupOn(min,max) { this.getGroup(min,max).forEach((e)=>{e.classList.add("active")}) }
 
     on() {        
         document.querySelectorAll(".clock-letter").forEach((e) => { e.classList.remove("active") });
         this.alwaysOn();
-        
         
         if (this.mins <= 30 && this.mins > 0) { this.past() }
         if (this.mins > 30 && this.mins < 60) { this.to() }
@@ -90,7 +79,7 @@ class Wordclock {
             this.m27,
             this.m28,
             this.m29,
-            this.half,            
+            this.half,
             this.m29,
             this.m28,
             this.m27,
@@ -108,19 +97,20 @@ class Wordclock {
             this.quarter,
             this.fourteen,
             this.thirteen,
-            this.twelveM,            
+            this.twelveM,
             this.elevenM,
-            this.tenM,            
-            this.nineM,            
-            this.eightM,            
+            this.tenM,
+            this.nineM,
+            this.eightM,
             this.sevenM,
             this.sixM,
-            this.fiveM,            
+            this.fiveM,
             this.fourM,
             this.threeM,
             this.twoM,
             this.oneM
         ];
+        
         minutes[this.mins]();
         
         var hours = [
@@ -140,23 +130,13 @@ class Wordclock {
         ];
         
         if (this.mins > 30) {
-            if (this.hrs+1 > 12) {
-                hours[this.hrs-11]()
-            } else {
-                hours[this.hrs+1]()
-            }
+            if (this.hrs+1 > 12) hours[this.hrs-11]()
+            else hours[this.hrs+1]()
         } else {
-            if  (this.hrs > 12) {
-                hours[this.hrs-12]()
-            } else {
-                hours[this.hrs]()
-            }
+            if (this.hrs > 12) hours[this.hrs-12]()
+            else hours[this.hrs]()
         }
-        
-        
     }
-    
-    
     
     m21() {turnGroupOn(17,22);turnGroupOn(48,50)}
     m22() {turnGroupOn(17,22);turnGroupOn(65,67)}
@@ -206,21 +186,15 @@ class Wordclock {
     half() {turnGroupOn(13,16)}
     quarter() {turnGroupOn(6,12)}
     
-    alwaysOn() {
-        [this.get(0),this.get(1),this.get(3),this.get(4),this.get(169)].forEach((e)=>{e.classList.add("active")});
-    }
+    alwaysOn() { [this.get(0),this.get(1),this.get(3),this.get(4),this.get(169)].forEach((e)=>{e.classList.add("active")}) }
     
-    get(x) {
-        return document.getElementById(this.prefix+x.toString())
-    }
+    get(x) { return document.getElementById(this.prefix+x.toString()) }
     
     getGroup(min,max) {
         var lst=[]
         for (var i = min; i <= max; i++) { lst.push(this.get(i)) }
         return lst
     }
-    
-    
 }
 
 new Wordclock("#f2f2f2", "#21839150", "#212121")
