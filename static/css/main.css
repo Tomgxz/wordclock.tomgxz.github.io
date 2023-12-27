@@ -6,9 +6,9 @@
 
 :root {
     --font-family:"Source Code Pro",monospace;
-    --background-color:#212121;
-    --active-color:#f2f2f2;
-    --disabled-color:#21839150;
+    --background-color:#000000;
+    --active-color:#dddddd;
+    --disabled-color:#0a1445;
 }
 
 .clock-container {
@@ -29,7 +29,7 @@
     letter-spacing:0.2em;
     color:var(--disabled-color);
     transition:color 200ms linear;
-    font-size: 7.9vh;
+    font-size: min(7.9vh, 7.9vw);
 }
 
 .clock-letter.active {

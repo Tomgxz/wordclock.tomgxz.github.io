@@ -9,10 +9,9 @@ function getGroup(min,max) {
 function turnGroupOn(min,max) { getGroup(min,max).forEach((e)=>{e.classList.add("active")}) }
 
 class Wordclock {
-    constructor(activeColor, disabledColor, backgroundColor) {
+    constructor() {
         this.prefix = "clock-letter-"
         this.clockLetters = [...document.getElementsByClassName(".clock-letter")];
-        this.applyUserOptions(activeColor, disabledColor, backgroundColor);
         this.localDate = new Date();
         this.mins = this.localDate.getMinutes();
         this.hrs = this.localDate.getHours();
@@ -21,14 +20,6 @@ class Wordclock {
         //update every 10s
         this.update();
         setInterval(() => { this.update() }, 500);
-    }
-
-    applyUserOptions(activeColor, disabledColor, backgroundColor) {
-        document.getElementById("userStyles").remove()
-        const userStyles = document.createElement("style")
-        userStyles.innerHTML = ":root{--background-color:"+backgroundColor+";--active-color:"+activeColor+";--disabled-color:"+disabledColor+";}"
-        userStyles.id = "userStyles";
-        document.head.appendChild(userStyles);
     }
 
     update() {
@@ -197,4 +188,4 @@ class Wordclock {
     }
 }
 
-new Wordclock("#f2f2f2", "#21839150", "#212121")
+new Wordclock()
