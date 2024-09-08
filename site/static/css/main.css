@@ -1,0 +1,67 @@
+@font-face {
+    font-family:"Source Code Pro";
+    src: url("../ttf/SourceCodePro-Regular.ttf") format("ttf");
+    font-weight:400;
+}
+
+:root {
+    --font-family:"Source Code Pro",monospace;
+    --background-color:#000000;
+    --active-color:#dddddd;
+    --disabled-color:#0a1445;
+}
+
+.clock-container {
+    width:100%;
+    background:var(--background-color);
+}
+
+.clock-text {
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock-letter {
+    font-family:var(--font-family);
+    letter-spacing:0.2em;
+    color:var(--disabled-color);
+    transition:color 200ms linear;
+    font-size: min(7.9vh, 7.9vw);
+}
+
+.clock-letter.active {
+    color:var(--active-color);
+}
+
+.clock-letter:not(.active) {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.clock-row {
+    display:flex;
+    flex-direction:row;
+}
+
+.clock-letter {
+    display:inline-block;
+}
+
+.section.one {
+    justify-content:center;
+}
+
+.section.one .section-content {
+    padding:0;
+    height:100vh;
+    width:100vw;
+}
+
+.section.one .section-body {
+    width:100%;
+    height:100%;
+}
